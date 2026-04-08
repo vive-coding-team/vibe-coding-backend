@@ -1,0 +1,5 @@
+---
+alwaysApply: true
+---
+
+python 3와 flask api를 활용한 ppt와 pdf의 텍스트를 추출하는 서버
