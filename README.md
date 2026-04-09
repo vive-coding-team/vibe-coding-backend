@@ -13,6 +13,12 @@ pip install -r requirements.txt
 python run.py
 ```
 
+## Railway 배포
+
+- **시작**: 저장소 루트의 `Procfile`로 `gunicorn`이 실행되며, Railway가 주입하는 **`PORT`**에 바인딩합니다.
+- **환경 변수** (예시): `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, 필요 시 `MAX_CONTENT_LENGTH`, `FLASK_DEBUG=0`
+- **`.ppt` 변환**: `nixpacks.toml`에서 `libreoffice`를 apt로 설치합니다. 빌드가 무겁거나 실패하면 해당 파일에서 `aptPkgs`를 조정하세요.
+
 ## API
 
 ### `POST /extraction`
