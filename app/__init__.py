@@ -17,7 +17,9 @@ def create_app() -> Flask:
     app.config["MAX_CONTENT_LENGTH"] = int(os.getenv("MAX_CONTENT_LENGTH", str(50 * 1024 * 1024)))
 
     from app.routes.extract import bp as extract_bp
+    from app.routes.files import bp as files_bp
 
     app.register_blueprint(extract_bp)
+    app.register_blueprint(files_bp)
     return app
 
