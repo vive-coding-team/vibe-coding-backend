@@ -25,11 +25,11 @@ def _client():
     return create_client(url, key)
 
 
-def insert_public_file_texts(texts: list[str]) -> int:
+def insert_public_file_texts(texts: list[str], name: str) -> int:
     if not is_supabase_configured():
         raise RuntimeError("supabase_not_configured: set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY")
 
-    resp = _client().table("file").insert({"texts": texts}).execute()
+    resp = _client().table("file").insert({"texts": texts, "name": name}).execute()
     data = getattr(resp, "data", None)
     if not isinstance(data, list) or not data:
         raise RuntimeError("supabase_insert_failed: empty_response")

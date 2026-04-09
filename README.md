@@ -15,29 +15,33 @@ python run.py
 
 ## API
 
-### `POST /extract`
+### `POST /extraction`
 
 `multipart/form-data`로 업로드.
 
-- `files`: 여러 개 업로드 (권장)
-- `file`: 단일 업로드
+- `file`: 단일 파일만 (필수)
 
 예시:
 
 ```bash
-curl -X POST "http://localhost:5000/extract" \
-  -F "files=@sample.pdf" \
-  -F "files=@sample.pptx"
+curl -X POST "http://localhost:5000/extraction" \
+  -F "file=@sample.pdf"
 ```
 
 응답:
 
 ```json
 {
-  "count": 2,
+  "count": 1,
   "results": [
-    {"filename": "sample.pdf", "content_type": "application/pdf", "ok": true, "body": ["1페이지 텍스트", "2페이지 텍스트"], "error": null},
-    {"filename": "sample.pptx", "content_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation", "ok": true, "body": ["1슬라이드 텍스트", "2슬라이드 텍스트"], "error": null}
+    {
+      "filename": "sample.pdf",
+      "content_type": "application/pdf",
+      "ok": true,
+      "body": ["1페이지 텍스트", "2페이지 텍스트"],
+      "error": null,
+      "supabase": {"ok": true, "id": 1, "error": null}
+    }
   ]
 }
 ```
